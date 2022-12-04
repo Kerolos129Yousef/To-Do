@@ -9,6 +9,16 @@ class MyTheme{
   static const Color red = Color(0XFFEC44B4B);
   static final  lightTheme = ThemeData(
     primaryColor: lightPrimary,
+    textTheme: TextTheme(
+      titleMedium:TextStyle(
+        fontSize: 19
+      ),
+      bodySmall: TextStyle(
+        fontSize: 15,
+        color: Colors.black,
+        fontWeight: FontWeight.w500
+      )
+    ),
     scaffoldBackgroundColor: lightScaffoldBackground,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.transparent,
