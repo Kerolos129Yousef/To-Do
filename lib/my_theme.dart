@@ -10,6 +10,10 @@ class MyTheme{
   static final  lightTheme = ThemeData(
     primaryColor: lightPrimary,
     textTheme: TextTheme(
+        bodyMedium:TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w700
+        ),
       titleMedium:TextStyle(
         fontSize: 19
       ),

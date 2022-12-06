@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo/Home/add_task_bottom_sheet.dart';
 import 'package:todo/Home/settings/setting_tap.dart';
 import 'package:todo/Home/tasks_list/tasks_list_tap.dart';
 
@@ -41,7 +42,7 @@ int selectedIndex=0;
           side: BorderSide(color: Colors.white,width: 4),
         ),
         onPressed: (){
-
+          showAddTaskBottomSheet();
         },
         child: Icon(Icons.add),
       ),
@@ -49,4 +50,9 @@ int selectedIndex=0;
   }
 
   List<Widget> TabsList = [TasksListTap(),SettingsTap()];
+  void showAddTaskBottomSheet(){
+    showModalBottomSheet(context: context, builder: (context) {
+      return AddTaskBottomSheet();
+    },isScrollControlled:true);
+  }
 }

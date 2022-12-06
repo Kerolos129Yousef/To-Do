@@ -73,7 +73,7 @@ class TaskWidget extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 3),
                   decoration: BoxDecoration(
                       color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(5)),
