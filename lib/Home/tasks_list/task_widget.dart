@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:todo/Dialoge_utilities.dart';
+import 'package:todo/database/my_database.dart';
+import 'package:todo/database/task.dart';
 
 class TaskWidget extends StatelessWidget {
+  Task task ;
+  TaskWidget(this.task);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,7 +16,20 @@ class TaskWidget extends StatelessWidget {
             motion: ScrollMotion(),
             children: [
               SlidableAction(
-                onPressed: (_) {},
+                onPressed: (_) {
+                    MyDatabase.deleteTask(task)
+                        .then((value) {
+                          showMessage(context, "task deleted successfully",
+                              posActionName: "ok");
+                    })
+                        .onError((error, stackTrace){
+                      showMessage(context, "something wen't wrong ,please try again later ",posActionName: "ok");
+                    })
+                        .timeout(onTimeout: (){
+                          showMessage(context, "Data deleted locally",posActionName: "ok");
+                    }, Duration(seconds: 5));
+
+                },
                 backgroundColor: Color(0xFFFE4A49),
                 foregroundColor: Colors.white,
                 icon: Icons.delete,
@@ -43,7 +61,7 @@ class TaskWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Play basket Ball",
+                          task.title??"",
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium!
@@ -59,12 +77,12 @@ class TaskWidget extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.watch_later_outlined,
-                              size: 15,
+                              size: 17,
                             ),
                             SizedBox(
-                              width: 5,
+                              width: 3,
                             ),
-                            Text("10:30 AM",
+                            Text("${task.dateTime?.hour}:${task.dateTime?.minute} ${task.dateTime?.timeZoneName}",
                                 style: Theme.of(context).textTheme.bodySmall),
                           ],
                         )

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo/Dialoge_utilities.dart';
 import 'package:todo/database/my_database.dart';
 import 'package:todo/database/task.dart';
+import 'package:todo/date_utiles.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
   @override
@@ -106,7 +107,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
       Task task = Task(
           title: title,
           description: description,
-          dateTime: date,
+          dateTime: dateOnly(date),
           isDone: false
       );
       showLoading(context, "Loading...",isCancelable: false);
@@ -117,10 +118,10 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
         });
       }).onError((error, stackTrace) {
         hideLoading(context);
-        showMessage(context,"Something went wrong ,try again later");
+        showMessage(context,"Something went wrong ,try again later",posActionName: "ok",);
       }).timeout(Duration(seconds: 5),onTimeout: (){
         hideLoading(context);
-        showMessage(context, "Message saved locally");
+        showMessage(context, "Message saved locally",posActionName: "ok");
       });
    }
 
